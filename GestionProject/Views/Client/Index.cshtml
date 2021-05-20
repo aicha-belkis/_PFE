@@ -1,0 +1,69 @@
+﻿@model List<GestionProject.ViewModels.ClientViewModel>
+@{ Layout = "_DashboardLayout"; }
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="txt-themecolor">Clients</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+
+    </div>
+    
+</div>
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+
+            <input class="form-control" id="myInput" type="text" placeholder="Search..">
+            <br>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>User Name</th>
+                            <th>Email address</th>
+                            <th>City</th>
+                            <th>Company</th>
+                            <th>Phone</th>
+                            <th>Project</th>
+                            <th class="text-nowrap">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var client in Model)
+                        {
+            <tr>
+                <td>@client.Username</td>
+                <td>@client.Email</td>
+                <td>@client.City</td>
+                <td>@client.Company</td>
+                <td>@client.Phone</td>
+                <td>@client.ProjectName</td>
+
+                <td class="text-nowrap">
+                    <a href="#" data-toggle="tooltip" data-original-title="Edit"> <i class="fas fa-pencil-alt text-inverse mr-1"></i> </a>
+                    <a href="#" data-toggle="tooltip" data-original-title="Close"> <i class="fas fa-times text-danger"></i> </a>
+                </td>working 
+            </tr>}
+
+                    </tbody>
+                </table>
+            </div>
+            <!-- /#page-content-wrapper -->
+            <div>
+                <ul class="nav nav-pills">
+                    @{ 
+                        for (int i =0; i < ViewBag.totalPages; i++) {
+                            string className = "";
+                            if (i == ViewBag.CurrentPage)
+                            { 
+                                className = "active";
+                            }
+
+                            <li class="@className">
+                                <a asp-action="Index" asp-route-page="@i">@i</a>
+                            </li>
+                        }
+                    }
+                    </ul>
+</div>
